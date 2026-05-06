@@ -1,0 +1,366 @@
+body {
+    background: #F9FAFB;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* container spacing control */
+.container {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* card */
+.card {
+    border-radius: 16px;
+    border: none;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* heading */
+h4 {
+    font-weight: 700;
+    color: #111827;
+    margin-top: 10px;
+}
+
+/* input */
+.form-control {
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+}
+
+/* button */
+.btn-dark {
+    background: #111827;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    transition: 0.2s ease;
+}
+
+.btn-dark:hover {
+    background: #000;
+    transform: translateY(-1px);
+}
+
+/* input group */
+.input-group-text {
+    background: #fff;
+    border-right: 0;
+}
+
+.input-group .form-control {
+    border-left: 0;
+}
+
+/* eye icon */
+.eye-btn {
+    cursor: pointer;
+    color: #6B7280;
+}
+
+/* messages */
+.alert {
+    font-size: 13px;
+    border-radius: 8px;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - ALL DEVICES
+======================================== */
+
+/* Extra Small Devices (Phones - up to 480px) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .card {
+        max-width: 100%;
+        padding: 20px !important;
+        border-radius: 12px;
+    }
+
+    .card.p-4 {
+        padding: 20px !important;
+    }
+
+    h4 {
+        font-size: 18px;
+        margin-top: 8px;
+    }
+
+    .text-muted {
+        font-size: 11px;
+    }
+
+    .form-label {
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+
+    .form-control {
+        padding: 9px 10px;
+        font-size: 13px;
+    }
+
+    .input-group-text {
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+
+    .btn-dark {
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+
+    .fa-user-shield {
+        font-size: 32px !important;
+    }
+
+    .alert {
+        font-size: 11px;
+        padding: 8px 10px;
+    }
+
+    .mb-3 {
+        margin-bottom: 16px !important;
+    }
+}
+
+/* Small Devices (Phones 481px - 576px) */
+@media (min-width: 481px) and (max-width: 576px) {
+    .container {
+        padding: 15px;
+    }
+
+    .card {
+        max-width: 95%;
+        padding: 24px !important;
+        border-radius: 14px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    .text-muted {
+        font-size: 12px;
+    }
+
+    .form-control {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .input-group-text {
+        padding: 10px 12px;
+    }
+
+    .btn-dark {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+}
+
+/* Medium Devices (Tablets 577px - 768px) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .card {
+        max-width: 400px;
+        padding: 28px !important;
+    }
+
+    h4 {
+        font-size: 22px;
+    }
+
+    .form-control {
+        padding: 11px 12px;
+        font-size: 14px;
+    }
+
+    .btn-dark {
+        padding: 11px 16px;
+    }
+}
+
+/* Large Devices (Laptops 769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .card {
+        max-width: 420px;
+    }
+
+    .card.p-4 {
+        padding: 32px !important;
+    }
+}
+
+/* Extra Large Devices (Desktops 1025px - 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .card {
+        max-width: 430px;
+    }
+
+    .card.p-4 {
+        padding: 36px !important;
+    }
+
+    h4 {
+        font-size: 24px;
+    }
+
+    .form-control {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .btn-dark {
+        padding: 12px 18px;
+    }
+}
+
+/* Ultra Wide Screens (1441px and above) */
+@media (min-width: 1441px) {
+    .card {
+        max-width: 450px;
+    }
+
+    .card.p-4 {
+        padding: 40px !important;
+    }
+
+    h4 {
+        font-size: 26px;
+    }
+
+    .text-muted {
+        font-size: 14px;
+    }
+
+    .form-label {
+        font-size: 14px;
+    }
+
+    .form-control {
+        padding: 13px 15px;
+        font-size: 15px;
+    }
+
+    .input-group-text {
+        padding: 13px 15px;
+        font-size: 14px;
+    }
+
+    .btn-dark {
+        padding: 13px 20px;
+        font-size: 15px;
+    }
+
+    .fa-user-shield {
+        font-size: 48px !important;
+    }
+}
+
+/* Landscape Mode for Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    body {
+        padding: 20px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .card {
+        max-width: 380px;
+        padding: 20px !important;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    .mb-3 {
+        margin-bottom: 12px !important;
+    }
+
+    .btn-dark {
+        margin-top: 5px !important;
+    }
+}
+
+/* Fix for very small devices (below 320px) */
+@media (max-width: 320px) {
+    .container {
+        padding: 8px;
+    }
+
+    .card {
+        padding: 16px !important;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    .text-muted {
+        font-size: 10px;
+    }
+
+    .form-label {
+        font-size: 11px;
+    }
+
+    .form-control,
+    .input-group-text {
+        padding: 7px 8px;
+        font-size: 11px;
+    }
+
+    .btn-dark {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .fa-user-shield {
+        font-size: 28px !important;
+    }
+}
+
+/* High Resolution Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .card {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+    }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .btn-dark {
+        transition: none;
+    }
+
+    .btn-dark:hover {
+        transform: none;
+    }
+}

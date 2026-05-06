@@ -1,0 +1,44 @@
+{% extends "admin_pannel.html" %}
+{% load static %}
+
+{% block title %}{% if is_edit %}Edit{% else %}Create{% endif %} About Section | Portfolio Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/all_section/about/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-card">
+        <div class="form-header">
+            <h2>{% if is_edit %}Edit About Section{% else %}Create About Section{% endif %}</h2>
+            <p>{% if is_edit %}Update your about page content{% else %}Tell your story to the world{% endif %}</p>
+        </div>
+
+        <form method="POST" class="about-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" class="form-control" value="{{ about.title|default:'' }}" placeholder="e.g., About Me, Who I Am, My Story" required>
+                <small class="form-text">A catchy title for your about section</small>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" class="form-control" rows="8" placeholder="Write your story, background, experience, and what makes you unique..." required>{{ about.description|default:'' }}</textarea>
+                <small class="form-text">Share your journey, skills, and passion</small>
+            </div>
+
+            <div class="form-actions">
+                <a href="{% url 'about' %}" class="btn-cancel">
+                    <i class="fa-solid fa-times"></i> Cancel
+                </a>
+                <button type="submit" class="btn-save">
+                    <i class="fa-solid fa-save"></i> {% if is_edit %}Update{% else %}Create{% endif %} About
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

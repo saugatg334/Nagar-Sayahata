@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Portfolio Admin{% endblock %}</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    
+    <!-- Iconify Icons -->
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    
+    {% block extra_css %} {% endblock %}
+</head>
+<body>
+
+<!-- ======================================== -->
+<!-- ADD THIS MISSING OVERLAY -->
+<!-- ======================================== -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="logo">
+            <span class="logo-text">Portfolio</span>
+        </div>
+        <button class="close-btn" id="closeSidebarBtn">
+            <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
+        </button>
+    </div>
+
+    <nav class="sidebar-nav">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="{% url 'home' %}" class="nav-link">
+                    <iconify-icon icon="mdi:home-outline"></iconify-icon>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'about' %}" class="nav-link">
+                    <iconify-icon icon="mdi:account-outline"></iconify-icon>
+                    <span>About</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'skills' %}" class="nav-link">
+                    <iconify-icon icon="mdi:code-tags"></iconify-icon>
+                    <span>Skills</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'project' %}" class="nav-link">
+                    <iconify-icon icon="mdi:folder-multiple-outline"></iconify-icon>
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'timeline' %}" class="nav-link">
+                    <iconify-icon icon="mdi:briefcase-outline"></iconify-icon>
+                    <span>Timeline</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'contact_dashboard' %}" class="nav-link">
+                    <iconify-icon icon="mdi:email-outline"></iconify-icon>
+                    <span>Contact</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+        <p>© 2026 Portfolio</p>
+    </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main-content" id="mainContent">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <button class="toggle-btn" id="toggleSidebarBtn">
+                <iconify-icon icon="heroicons:bars-3-solid"></iconify-icon>
+            </button>
+            <button class="mobile-toggle-btn" id="mobileToggleBtn">
+                <iconify-icon icon="heroicons:bars-3-solid"></iconify-icon>
+            </button>
+        </div>
+
+        <div class="navbar-right">
+            <!-- Dark/Light Mode Toggle -->
+            <button class="theme-toggle" id="themeToggleBtn"></button>
+
+            <!-- Profile Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-toggle-btn" id="dropdownBtn">
+                    <img src="{% static 'assets/images/profile.png' %}" alt="Profile" class="avatar" onerror="this.src='https://via.placeholder.com/40'">
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="#" class="dropdown-item">
+                        <iconify-icon icon="solar:user-linear"></iconify-icon>
+                        My Profile
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{% url 'logout' %}" class="dropdown-item">
+                        <iconify-icon icon="lucide:power"></iconify-icon>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT BLOCK -->
+    <div class="content-container">
+        {% block content %}
+        <!-- Child templates will insert content here -->
+        {% endblock %}
+    </div>
+</main>
+
+<!-- JavaScript Files -->
+<script src="{% static 'assets/js/iconify-icon.min.js' %}"></script>
+<script src="{% static 'assets/js/script.js' %}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

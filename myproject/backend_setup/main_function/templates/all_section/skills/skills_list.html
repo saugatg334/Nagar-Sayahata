@@ -1,0 +1,93 @@
+{% extends "admin_pannel.html" %}
+{% load static %}
+
+{% block title %}Skills | Portfolio Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/all_section/skills/skills.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="skills-container">
+    
+    <!-- Page Header -->
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Skills</h1>
+            <p class="page-subtitle">Manage your professional skills and expertise</p>
+        </div>
+        <a href="{% url 'skill_add' %}" class="btn-add">
+            <i class="fa-solid fa-plus"></i> Add New Skill
+        </a>
+    </div>
+
+    <!-- Stats Overview -->
+    {% if skills %}
+    <div class="stats-overview">
+        <div class="stat-card">
+            <div class="stat-icon">💪</div>
+            <div class="stat-info">
+                <h3>Total Skills</h3>
+                <p class="stat-number">{{ total_skills }}</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">📊</div>
+            <div class="stat-info">
+                <h3>Average Proficiency</h3>
+                <p class="stat-number">{{ avg_percentage|floatformat:0 }}%</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-info">
+                <h3>Top Skill</h3>
+                <p class="stat-number">{{ skills.first.skill_name|truncatechars:15 }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Skills Grid -->
+    {% if skills %}
+    <div class="skills-grid">
+        {% for skill in skills %}
+        <div class="skill-card">
+            <div class="skill-header">
+                <h3 class="skill-name">{{ skill.skill_name }}</h3>
+                <div class="skill-actions">
+                    <a href="{% url 'skill_edit' skill.pk %}" class="skill-edit" title="Edit Skill">
+                        <i class="fa-solid fa-pencil"></i>
+                    </a>
+                    <a href="{% url 'skill_delete' skill.pk %}" class="skill-delete" title="Delete Skill">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="skill-percentage">
+                <span class="percentage-label">{{ skill.percentage }}%</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: {{ skill.percentage }}%;">
+                        <span class="progress-text">{{ skill.percentage }}%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <!-- Empty State -->
+    <div class="empty-state">
+        <div class="empty-state-content">
+            <i class="fa-solid fa-code"></i>
+            <h3>No Skills Added Yet</h3>
+            <p>Start by adding your professional skills and expertise</p>
+            <a href="{% url 'skill_add' %}" class="btn-add">
+                <i class="fa-solid fa-plus"></i> Add Your First Skill
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}
