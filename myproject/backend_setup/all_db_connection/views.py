@@ -159,13 +159,6 @@ class LogoutView(View):
             username = request.user.username
             logout(request)
             
-            # Clear failed attempts on logout (optional)
-            # This prevents someone from exploiting the logout to reset attempts
-            # Comment out if you want to keep attempts across sessions
-            # ip_address = self.get_client_ip(request)
-            # cache_key = f'login_attempts_{ip_address}'
-            # cache.delete(cache_key)
-            
             messages.info(request, "You have been successfully logged out.")
         else:
             messages.info(request, "You were not logged in.")
@@ -203,5 +196,7 @@ def rate_limit(max_requests=10, window=60):
             return view_func(request, *args, **kwargs)
         return wrapper
     return decorator
+
+
 
 

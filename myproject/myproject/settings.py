@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'portfolio',
+        'NAME': 'nagar_sahayata_db',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
