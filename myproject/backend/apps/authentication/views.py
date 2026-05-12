@@ -85,7 +85,7 @@ class LoginView(View):
         """Render login page"""
         # If user is already logged in, redirect to home
         if request.user.is_authenticated:
-            return redirect('admin_pannel:home')
+            return redirect('admin_panel:home')
         
         # Check if there's a lockout message to display
         is_locked, remaining = self.is_locked_out(request)
@@ -99,7 +99,7 @@ class LoginView(View):
         
         # Check if already authenticated
         if request.user.is_authenticated:
-            return redirect('admin_pannel:home')
+            return redirect('admin_panel:home')
         
         # Check for lockout FIRST (before any authentication attempt)
         is_locked, remaining_time = self.is_locked_out(request)
@@ -135,7 +135,7 @@ class LoginView(View):
             if next_url:
                 return redirect(next_url)
             
-            return redirect('admin_pannel:home')
+            return redirect('admin_panel:home')
         else:
             # Failed login - record attempt and show generic message
             self.record_failed_attempt(request)

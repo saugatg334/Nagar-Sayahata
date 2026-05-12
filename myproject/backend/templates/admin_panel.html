@@ -13,7 +13,7 @@
     </style> {% endcomment %}
     <!-- CSS Files -->
     {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
-    <link rel="stylesheet" href="{% static 'css/admin_pannel/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin_panel/style.css' %}">
     
     <!-- Iconify Icons -->
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
@@ -41,7 +41,7 @@
     <nav class="sidebar-nav">
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="{% url 'admin_pannel:home' %}" class="nav-link">
+                <a href="{% url 'admin_panel:home' %}" class="nav-link">
                     <iconify-icon icon="mdi:home-outline"></iconify-icon>
                     <span>Home</span>
                 </a>
@@ -104,7 +104,7 @@
             <!-- Profile Dropdown -->
             <div class="dropdown">
                 <button class="dropdown-toggle-btn" id="dropdownBtn">
-                    <img src="{% static 'admin_pannel/profile.png' %}" alt="Profile" class="avatar" onerror="this.src='https://via.placeholder.com/40'">
+                    <img src="{% static 'admin_panel/profile.png' %}" alt="Profile" class="avatar" onerror="this.src='https://via.placeholder.com/40'">
                 </button>
                 <div class="dropdown-menu" id="dropdownMenu">
                     <a href="#" class="dropdown-item">
@@ -134,8 +134,8 @@
 <script src="{% static 'js/script.js' %}"></script> {% endcomment %}
 
 <!-- JS -->
-<script src="{% static 'js/admin_pannel/iconify-icon.min.js' %}"></script>
-<script src="{% static 'js/admin_pannel/script.js' %}"></script>
+<script src="{% static 'js/admin_panel/iconify-icon.min.js' %}"></script>
+<script src="{% static 'js/admin_panel/script.js' %}"></script>
 
 {% block extra_js %}{% endblock %}
 </body>

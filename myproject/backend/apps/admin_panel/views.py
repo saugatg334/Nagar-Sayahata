@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 # ====================================
 class MainFunctionView(View):
     def get(self, request):
-        return render(request, 'admin_pannel.html')
+        return render(request, 'admin_panel.html')
 
 
 # ====================================

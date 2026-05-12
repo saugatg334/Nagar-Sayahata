@@ -1,146 +1,117 @@
-﻿# Project Structure
+﻿# FINAL CLEAN PROFESSIONAL DJANGO STRUCTURE
 
-This file documents only the current real workspace structure and current Django routing configuration.
-
-## Current Workspace Tree
+## Project Structure
 
 ```
-6-sem project/
-├── .gitignore
-├── README.md
-├── all_details.txt
-├── project_structure.md
-├── requirements.txt
-├── file_structure.md
-├── myenv/
-│   ├── pyvenv.cfg
-│   ├── Include/
-│   ├── Lib/
-│   └── Scripts/
-└── myproject/
-    ├── manage.py
-    ├── db.sqlite3
-    ├── file_structure.md
-    ├── config/
-    │   ├── __init__.py
-    │   ├── asgi.py
-    │   ├── settings.py
-    │   ├── urls.py
-    │   └── wsgi.py
-    └── backend/
-        ├── apps/
-        │   ├── admin_pannel/
-        │   │   ├── __init__.py
-        │   │   ├── admin.py
-        │   │   ├── apps.py
-        │   │   ├── models.py
-        │   │   ├── tests.py
-        │   │   ├── urls.py
-        │   │   ├── views.py
-        │   │   └── migrations/
-        │   └── authentication/
-        │       ├── __init__.py
-        │       ├── admin.py
-        │       ├── apps.py
-        │       ├── models.py
-        │       ├── tests.py
-        │       ├── urls.py
-        │       ├── views.py
-        │       └── migrations/
-        ├── templates/
-        │   ├── admin_base.html
-        │   ├── admin_pannel.html
-        │   ├── authentication/
-        │   │   └── login.html
-        │   └── home/
-        │       └── home.html
-        ├── static/
-        │   ├── admin_pannel/
-        │   │   └── profile.png
-        │   ├── css/
-        │   │   ├── admin_pannel/
-        │   │   ├── authentication/
-        │   │   └── home/
-        │   ├── fonts/
-        │   └── js/
-        │       ├── admin_pannel/
-        │       └── authentication/
-        └── media/
+myproject/
+│
+├── config/                          # Django settings and configuration
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py                  # Main settings
+│   ├── urls.py                      # Main URL configuration
+│   └── wsgi.py
+│
+├── backend/                         # Backend application code
+│   ├── apps/                        # Django apps
+│   │   ├── admin_panel/             # Admin panel app
+│   │   │   ├── __init__.py
+│   │   │   ├── admin.py
+│   │   │   ├── apps.py
+│   │   │   ├── models.py
+│   │   │   ├── tests.py
+│   │   │   ├── urls.py
+│   │   │   ├── views.py
+│   │   │   └── migrations/
+│   │   │       └── __pycache__/
+│   │   └── authentication/          # Authentication app
+│   │       ├── __init__.py
+│   │       ├── admin.py
+│   │       ├── apps.py
+│   │       ├── models.py
+│   │       ├── tests.py
+│   │       ├── urls.py
+│   │       ├── views.py
+│   │       └── migrations/
+│   │           ├── 0001_initial.py
+│   │           ├── 0002_skill.py
+│   │           ├── 0003_contactinfo_message_sociallink.py
+│   │           ├── 0004_delete_contactinfo_delete_message_delete_sociallink.py
+│   │           ├── 0005_contactinfo_message_sociallink.py
+│   │           ├── 0006_delete_about_delete_aboutstat_delete_contactinfo_and_more.py
+│   │           ├── __init__.py
+│   │           └── __pycache__/
+│   │
+│   ├── media/                       # User-uploaded files
+│   ├── static/                      # Static files (CSS, JS, images)
+│   │   ├── css/
+│   │   │   ├── admin_panel/
+│   │   │   │   └── style.css
+│   │   │   ├── authentication/
+│   │   │   │   └── login.css
+│   │   │   └── home/
+│   │   │       └── home.css
+│   │   ├── fonts/
+│   │   │   └── remixicon.woff2
+│   │   └── js/
+│   │       ├── admin_panel/
+│   │       │   ├── app.js
+│   │       │   ├── bootstrap.bundle.min.js
+│   │       │   ├── dataTables.min.js
+│   │       │   ├── iconify-icon.min.js
+│   │       │   ├── jquery-3.7.1.min.js
+│   │       │   ├── jquery-jvectormap-world-mill-en.js
+│   │       │   └── script.js
+│   │       └── authentication/
+│   
+│   └── templates/                   # Django templates
+│       ├── admin_base.html
+│       ├── admin_panel.html
+│       ├── authentication/
+│       │   └── login.html
+│       └── home/
+│           └── home.html
+│
+├── staff_portal/                   # Empty placeholder folder
+├── db.sqlite3
+└── manage.py
 ```
 
-## Current Django Routing
+## Explanation of Structure
 
-### Root URL configuration
-- `myproject/config/urls.py`
-- Includes:
-  - `path('', include('backend.apps.authentication.urls'))`
-  - `path('admin/', include('backend.apps.admin_pannel.urls'))`
+### Root application layout
+- `config/` contains Django project settings and URL configuration.
+- `backend/` contains reusable app modules, static assets, and templates.
+- `staff_portal/` exists in the repository as an empty placeholder folder.
+- `manage.py` is the Django management script.
+- `db.sqlite3` is the local development database file.
 
-### Authentication app
-- `myproject/backend/apps/authentication/urls.py`
-- `app_name = 'auth'`
-- Routes:
-  - `path('login/', LoginView.as_view(), name='login')`
-  - `path('logout/', LogoutView.as_view(), name='logout')`
-- Active URLs:
-  - `/login/`
-  - `/logout/`
+### Backend apps
+- `backend/apps/admin_panel/` is the admin dashboard app.
+- `backend/apps/authentication/` handles login, logout, and user authentication.
+- Each Django app includes `models.py`, `views.py`, `urls.py`, `admin.py`, `apps.py`, `tests.py`, and migrations.
 
-### Admin panel app
-- `myproject/backend/apps/admin_pannel/urls.py`
-- `app_name = 'admin_pannel'`
-- Routes:
-  - `path('', MainFunctionView.as_view(), name='main')`
-  - `path('home/', Home.as_view(), name='home')`
-- Active URLs:
-  - `/admin/`
-  - `/admin/home/`
+### Templates
+- Global templates are stored in `backend/templates/`.
+- `admin_base.html` is the base layout used by admin pages.
+- `admin_panel.html` is the admin dashboard page.
+- `backend/templates/authentication/login.html` is the login page.
+- `backend/templates/home/home.html` is the home page.
 
-## Current Template & Static Layout
+### Static files
+- Static files are stored in `backend/static/`.
+- CSS lives under `backend/static/css/` by section.
+- JS lives under `backend/static/js/` by section.
+- Font files live under `backend/static/fonts/`.
+- `backend/static/css/admin_panel/style.css` and `backend/static/js/admin_panel/` contain admin-specific assets.
+- `backend/static/css/authentication/login.css` contains login-specific styling.
 
-- Templates are stored in `myproject/backend/templates/`.
-- Static assets are stored in `myproject/backend/static/`.
-- Media uploads are stored in `myproject/backend/media/`.
+### Media files
+- `backend/media/` is reserved for uploaded media files in development.
+- Media is served from `backend/media/` when configured in `settings.py`.
 
-### Known template files
-- `admin_base.html`
-- `admin_pannel.html`
-- `authentication/login.html`
-- `home/home.html`
+## Notes
+- The folder name `admin_panel` is now consistent across app names, templates, and static assets.
+- any old `admin_pannel` path names have been removed from the current workspace layout.
+- If you want the documentation to include the full workspace root, add `README.md`, `requirements.txt`, and `myenv/` above `myproject/`.
 
-### Known static directories
-- `myproject/backend/static/admin_pannel/`
-- `myproject/backend/static/css/admin_pannel/`
-- `myproject/backend/static/css/authentication/`
-- `myproject/backend/static/css/home/`
-- `myproject/backend/static/fonts/`
-- `myproject/backend/static/js/admin_pannel/`
-- `myproject/backend/static/js/authentication/`
-
-## Current URL naming conventions
-
-- Auth URLs must be referenced with `auth:login` and `auth:logout`.
-- Admin panel URLs must be referenced with `admin_pannel:main` and `admin_pannel:home`.
-- Example template usage:
-  - `{% url 'auth:login' %}`
-  - `{% url 'auth:logout' %}`
-  - `{% url 'admin_pannel:home' %}`
-
-## Current behavior notes
-
-- The auth app is mounted at the project root.
-- The admin panel app is mounted under `/admin/`.
-- There is no built-in Django admin route configured in `config/urls.py`.
-- `LogoutView` should redirect to `auth:login`.
-- `LoginView` may redirect authenticated users to `admin_pannel:home`.
-
-## How to run the current project
-
-```powershell
-cd "d:\ALL Coding\Collage project\6-sem project\myproject"
-.\..\myenv\Scripts\Activate.ps1
-python manage.py migrate
-python manage.py runserver
-```
-
-Open `http://localhost:8000/` in the browser.

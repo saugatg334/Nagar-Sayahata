@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # your apps
-    'backend.apps.admin_pannel',
+    'backend.apps.admin_panel',
     'backend.apps.authentication',
     
     

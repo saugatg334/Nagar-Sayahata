@@ -24,7 +24,7 @@ urlpatterns = [
     path('', include('backend.apps.authentication.urls')),
     
     # ===== ADMIN PANEL ROUTES (Empty path = root) =====
-    path('admin/', include('backend.apps.admin_pannel.urls')),
+    path('admin/', include('backend.apps.admin_panel.urls')),
 ]
 
 if settings.DEBUG:
