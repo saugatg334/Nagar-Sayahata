@@ -12,11 +12,7 @@
         }
     </style> {% endcomment %}
     <!-- CSS Files -->
-    {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/admin_panel/style.css' %}">
-    
-    <!-- Iconify Icons -->
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     
     {% block extra_css %} {% endblock %}
 </head>
@@ -30,11 +26,8 @@
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-        <div class="logo">
-            <span class="logo-text">Nagar Sahayata</span>
-        </div>
-        <button class="close-btn" id="closeSidebarBtn">
-            <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
+        <button class="close-btn" id="closeSidebarBtn" aria-label="Close sidebar">
+            <svg viewBox="0 0 24 24" class="icon icon-close" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
     </div>
 
@@ -42,37 +35,37 @@
         <ul class="nav-menu">
             <li class="nav-item">
                 <a href="{% url 'admin_panel:home' %}" class="nav-link">
-                    <iconify-icon icon="mdi:home-outline"></iconify-icon>
+                    <svg viewBox="0 0 24 24" class="icon icon-home" aria-hidden="true" focusable="false"><path d="M3 11.5L12 4l9 7.5v8a1 1 0 0 1-1 1h-5v-5H9v5H4a1 1 0 0 1-1-1v-8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
                     <span>Home</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <iconify-icon icon="mdi:account-outline"></iconify-icon>
+                    <svg viewBox="0 0 24 24" class="icon icon-user" aria-hidden="true" focusable="false"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
                     <span>About</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <iconify-icon icon="mdi:code-tags"></iconify-icon>
+                    <svg viewBox="0 0 24 24" class="icon icon-code" aria-hidden="true" focusable="false"><path d="M9 6l-4 6 4 6M15 6l4 6-4 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span>Skills</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <iconify-icon icon="mdi:folder-multiple-outline"></iconify-icon>
+                    <svg viewBox="0 0 24 24" class="icon icon-folder" aria-hidden="true" focusable="false"><path d="M3 7a2 2 0 0 1 2-2h5l2 2h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
                     <span>Projects</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <iconify-icon icon="mdi:briefcase-outline"></iconify-icon>
+                    <svg viewBox="0 0 24 24" class="icon icon-briefcase" aria-hidden="true" focusable="false"><path d="M4 7h16v12H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
                     <span>Timeline</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <iconify-icon icon="mdi:email-outline"></iconify-icon>
+                    <svg viewBox="0 0 24 24" class="icon icon-mail" aria-hidden="true" focusable="false"><path d="M3 7h18v10H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
                     <span>Contact</span>
                 </a>
             </li>
@@ -89,11 +82,15 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="navbar-left">
-            <button class="toggle-btn" id="toggleSidebarBtn">
-                <iconify-icon icon="heroicons:bars-3-solid"></iconify-icon>
+            <div class="logo">
+                <span class="logo-text">Nagar Sahayata</span>
+                <span class="logo-abbr">NS</span>
+            </div>
+            <button class="toggle-btn" id="toggleSidebarBtn" aria-label="Toggle sidebar">
+                <svg viewBox="0 0 24 24" class="icon icon-menu" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </button>
-            <button class="mobile-toggle-btn" id="mobileToggleBtn">
-                <iconify-icon icon="heroicons:bars-3-solid"></iconify-icon>
+            <button class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Toggle mobile menu">
+                <svg viewBox="0 0 24 24" class="icon icon-menu" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </button>
         </div>
 
@@ -104,16 +101,16 @@
             <!-- Profile Dropdown -->
             <div class="dropdown">
                 <button class="dropdown-toggle-btn" id="dropdownBtn">
-                    <img src="{% static 'admin_panel/profile.png' %}" alt="Profile" class="avatar" onerror="this.src='https://via.placeholder.com/40'">
+                    <img src="{% static 'admin_panel/profile.png' %}" alt="Profile" class="avatar" onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22%3E%3Crect width=%2240%22 height=%2240%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2220%22 y=%2226%22 font-family=%22Arial,Helvetica,sans-serif%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23647d92%22%3ENS%3C/text%3E%3C/svg%3E';">
                 </button>
                 <div class="dropdown-menu" id="dropdownMenu">
                     <a href="#" class="dropdown-item">
-                        <iconify-icon icon="solar:user-linear"></iconify-icon>
+                        <svg viewBox="0 0 24 24" class="icon icon-user" aria-hidden="true" focusable="false"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
                         My Profile
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="{% url 'auth:logout' %}" class="dropdown-item">
-                        <iconify-icon icon="lucide:power"></iconify-icon>
+                        <svg viewBox="0 0 24 24" class="icon icon-power" aria-hidden="true" focusable="false"><path d="M12 4v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 11.5a4 4 0 1 1 8 0v2.5a4 4 0 0 1-8 0v-2.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
                         Logout
                     </a>
                 </div>
@@ -130,11 +127,7 @@
 </main>
 
 <!-- JavaScript Files -->
-{% comment %} <script src="{% static 'js/iconify-icon.min.js' %}"></script>
-<script src="{% static 'js/script.js' %}"></script> {% endcomment %}
-
 <!-- JS -->
-<script src="{% static 'js/admin_panel/iconify-icon.min.js' %}"></script>
 <script src="{% static 'js/admin_panel/script.js' %}"></script>
 
 {% block extra_js %}{% endblock %}
