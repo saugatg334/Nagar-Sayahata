@@ -1,0 +1,76 @@
+{% extends "admin_panel.html" %}
+{% load static %}
+
+{% block title %}Profile Settings | Nagar Sayata{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="profile-header">
+        <div class="profile-header-content">
+            <h2>Profile Settings</h2>
+            <p>Manage your personal information and municipality details</p>
+        </div>
+    </div>
+
+    <div class="profile-card">
+
+        <div class="profile-user-section">
+            <div class="profile-avatar-container">
+                {% if profile.photo %}
+                <img src="{{ profile.photo.url }}" alt="User" class="profile-avatar" id="avatar-preview">
+                {% else %}
+                <img src="{% static 'images/user.png' %}" alt="User" class="profile-avatar" id="avatar-preview">
+                {% endif %}
+                <label for="id_photo" class="profile-avatar-edit">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                    </svg>
+                </label>
+                <input type="file" id="id_photo" name="photo" class="profile-avatar-input" accept="image/*">
+            </div>
+            <div class="profile-user-info">
+                <h3>{{ request.user.get_full_name|default:request.user.username }}</h3>
+                <p>{{ request.user.email }}</p>
+            </div>
+        </div>
+
+        <form method="POST" class="profile-form" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-grid">
+
+                <div class="form-section-title">Personal Information</div>
+
+                <div class="form-group">
+                    <label for="id_name">Full Name</label>
+                    <input type="text" id="id_name" name="name" value="{{ request.user.get_full_name|default:'' }}" placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_email">Email Address</label>
+                    <input type="email" id="id_email" name="email" value="{{ request.user.email|default:'' }}" placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_phone">Phone Number</label>
+                    <input type="tel" id="id_phone" name="phone" value="{{ profile.phone|default:'' }}" placeholder="Enter phone number">
+                </div>
+
+                
+
+            <button type="submit" class="save-btn">Save Changes</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

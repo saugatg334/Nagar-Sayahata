@@ -108,7 +108,7 @@
                     <img src="{% static 'admin_panel/profile.png' %}" alt="Profile" class="avatar" onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22%3E%3Crect width=%2240%22 height=%2240%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2220%22 y=%2226%22 font-family=%22Arial,Helvetica,sans-serif%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23647d92%22%3ENS%3C/text%3E%3C/svg%3E';">
                 </button>
                 <div class="dropdown-menu" id="dropdownMenu">
-                    <a href="#" class="dropdown-item">
+                    <a href="{% url 'admin_panel:profile' %}" class="dropdown-item">
                         <svg viewBox="0 0 24 24" class="icon icon-user" aria-hidden="true" focusable="false"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
                         My Profile
                     </a>
