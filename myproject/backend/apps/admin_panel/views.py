@@ -24,6 +24,20 @@ class Home(TemplateView):
         return render(request, self.template_name, context)
 
 
+# ====================================
+# ✅ Home Section
+# ====================================
+class About(TemplateView):
+    template_name = 'about/about.html'
+    
+    def get(self, request):
+        context = {
+            'user': request.user,  # Pass user to template
+        }
+        return render(request, self.template_name, context)
+
+
+
 
 
 
