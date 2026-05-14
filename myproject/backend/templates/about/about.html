@@ -8,12 +8,9 @@
 {% endblock %}
 
 {% block content %}
+
+
 <div class="dashboard-container">
-    
-    <!-- ======================================== -->
-    <!-- SECTION 1: TOP STATS & SETTINGS CARDS -->
-    <!-- ======================================== -->
-    
     <!-- Page Header -->
     <div class="page-header">
         <div>
@@ -22,164 +19,8 @@
         </div>
     </div>
 
-    <!-- Stats & Settings Cards Grid -->
-    <div class="stats-settings-grid">
-        <!-- Featured Projects Card -->
-        <div class="stat-settings-card">
-            <div class="card-icon purple">📊</div>
-            <div class="card-content">
-                <h3>Featured Projects</h3>
-                <p class="card-number">{{ settings.featured_projects_count|default:"0" }}</p>
-            </div>
-            <button class="card-edit" onclick="openSettingsModal()">
-                <i class="fa-solid fa-pencil"></i>
-            </button>
-        </div>
-
-        <!-- Skills Count Card -->
-        <div class="stat-settings-card">
-            <div class="card-icon blue">⚡</div>
-            <div class="card-content">
-                <h3>Skills Count</h3>
-                <p class="card-number">{{ settings.skills_count|default:"0" }}</p>
-            </div>
-            <button class="card-edit" onclick="openSettingsModal()">
-                <i class="fa-solid fa-pencil"></i>
-            </button>
-        </div>
-
-        <!-- Show Projects Toggle Card -->
-        <div class="stat-settings-card toggle-card">
-            <div class="card-icon green">
-                {% if settings.show_projects %}✅{% else %}❌{% endif %}
-            </div>
-            <div class="card-content">
-                <h3>Show Projects</h3>
-                <span class="toggle-status {% if settings.show_projects %}status-on{% else %}status-off{% endif %}">
-                    {% if settings.show_projects %}ON{% else %}OFF{% endif %}
-                </span>
-            </div>
-            <button class="card-edit" onclick="openSettingsModal()">
-                <i class="fa-solid fa-pencil"></i>
-            </button>
-        </div>
-
-        <!-- Show Skills Toggle Card -->
-        <div class="stat-settings-card toggle-card">
-            <div class="card-icon orange">
-                {% if settings.show_skills %}✅{% else %}❌{% endif %}
-            </div>
-            <div class="card-content">
-                <h3>Show Skills</h3>
-                <span class="toggle-status {% if settings.show_skills %}status-on{% else %}status-off{% endif %}">
-                    {% if settings.show_skills %}ON{% else %}OFF{% endif %}
-                </span>
-            </div>
-            <button class="card-edit" onclick="openSettingsModal()">
-                <i class="fa-solid fa-pencil"></i>
-            </button>
-        </div>
-
-        <!-- Show Experience Toggle Card -->
-        <div class="stat-settings-card toggle-card">
-            <div class="card-icon red">
-                {% if settings.show_experience %}✅{% else %}❌{% endif %}
-            </div>
-            <div class="card-content">
-                <h3>Show Experience</h3>
-                <span class="toggle-status {% if settings.show_experience %}status-on{% else %}status-off{% endif %}">
-                    {% if settings.show_experience %}ON{% else %}OFF{% endif %}
-                </span>
-            </div>
-            <button class="card-edit" onclick="openSettingsModal()">
-                <i class="fa-solid fa-pencil"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- ======================================== -->
-    <!-- SECTION 2: HERO SECTION (EDITABLE) -->
-    <!-- ======================================== -->
-    
-    <div class="hero-section-wrapper">
-        <div class="hero-header">
-            <h2 class="section-title">Hero Section</h2>
-            <button class="edit-hero-btn" onclick="openHeroModal()">
-                <i class="fa-solid fa-pencil"></i> Edit Hero Content
-            </button>
-        </div>
-
-        <div class="hero-main-card">
-            <div class="hero-display">
-                <div class="hero-text-content">
-                    <h3 class="hero-title">{{ home.hero_title|default:"No Title Set" }}</h3>
-                    <p class="hero-description">{{ home.hero_subtitle|default:"No Subtitle Set. Click edit to add your hero subtitle." }}</p>
-                    {% if home.resume_link %}
-                        <a href="{{ home.resume_link }}" target="_blank" class="resume-btn-link">
-                            <i class="fa-solid fa-download"></i> Download Resume
-                        </a>
-                    {% else %}
-                        <button class="resume-btn-link disabled" disabled>
-                            <i class="fa-solid fa-download"></i> No Resume Link
-                        </button>
-                    {% endif %}
-                </div>
-                {% if home.hero_image %}
-                    <div class="hero-image-preview">
-                        <img src="{{ home.hero_image.url }}" alt="Hero Image">
-                    </div>
-                {% else %}
-                    <div class="hero-image-placeholder">
-                        <i class="fa-solid fa-image"></i>
-                        <p>No Image Uploaded</p>
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
 </div>
 
-<!-- ======================================== -->
-<!-- JAVASCRIPT FOR MODALS -->
-<!-- ======================================== -->
 
-<script>
-function openSettingsModal() {
-    document.getElementById('settingsModal').style.display = 'flex';
-}
-
-function closeSettingsModal() {
-    document.getElementById('settingsModal').style.display = 'none';
-}
-
-function openHeroModal() {
-    document.getElementById('heroModal').style.display = 'flex';
-}
-
-function closeHeroModal() {
-    document.getElementById('heroModal').style.display = 'none';
-}
-
-// Close modals when clicking outside
-window.onclick = function(event) {
-    const settingsModal = document.getElementById('settingsModal');
-    const heroModal = document.getElementById('heroModal');
-    if (event.target == settingsModal) {
-        settingsModal.style.display = 'none';
-    }
-    if (event.target == heroModal) {
-        heroModal.style.display = 'none';
-    }
-}
-
-// Close modals with Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeSettingsModal();
-        closeHeroModal();
-    }
-});
-</script>
 {% endblock %}
 
