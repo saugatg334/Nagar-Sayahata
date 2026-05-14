@@ -4,7 +4,6 @@ from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from .models import Profile
 
 
 # ====================================
@@ -45,34 +44,12 @@ class About(TemplateView):
 # ✅ Profile Section
 # ====================================
 class profile(View):
+    template_name = 'profile/index.html'
+
     def get(self, request):
-        profile, created = Profile.objects.get_or_create(user=request.user)
         context = {
             'user': request.user,
-            'profile': profile,
         }
-        return render(request, 'profile/index.html', context)
-
-    def post(self, request):
-        profile, created = Profile.objects.get_or_create(user=request.user)
-
-        profile.phone = request.POST.get('phone', '')
-        profile.country = request.POST.get('country', '')
-        profile.province = request.POST.get('province', '')
-        profile.district = request.POST.get('district', '')
-        profile.municipality = request.POST.get('municipality', '')
-        profile.ward = request.POST.get('ward', '')
-
-        if 'photo' in request.FILES:
-            profile.photo = request.FILES['photo']
-
-        profile.save()
-
-        new_name = request.POST.get('name', '')
-        if new_name:
-            request.user.first_name = ' '.join(new_name.split()[:-1])
-            request.user.last_name = new_name.split()[-1] if len(new_name.split()) > 1 else ''
-            request.user.save()
-
-        messages.success(request, 'Profile saved successfully!')
-        return redirect('admin_panel:main')
+        return render(request, self.template_name, context)
+    
+    

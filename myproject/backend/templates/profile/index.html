@@ -9,78 +9,9 @@
 
 {% block content %}
 
-<div class="profile-page">
 
-    <div class="profile-header">
-        <div class="profile-header-content">
-            <h2>Profile Settings</h2>
-            <p>Manage your personal information and municipality details</p>
-        </div>
-    </div>
+<h1>THis is the Profile Page</h1>
 
-    <div class="profile-card">
 
-        <div class="profile-user-section">
-            <img src="{% static 'images/user.png' %}" alt="User" class="profile-avatar" id="avatar-preview">
-            <div class="profile-user-info">
-                <h3>{{ request.user.get_full_name|default:request.user.username }}</h3>
-                <p>{{ request.user.email }}</p>
-            </div>
-        </div>
-
-        <form method="POST">
-            {% csrf_token %}
-
-            <div class="form-grid">
-
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" name="name" value="{{ request.user.get_full_name }}">
-                </div>
-
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" value="{{ request.user.email }}">
-                </div>
-
-                <div class="form-group">
-                    <label>Municipality</label>
-                    <input type="text" name="municipality" value="">
-                </div>
-
-                <div class="form-group">
-                    <label>Ward No</label>
-                    <input type="text" name="ward" value="">
-                </div>
-
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="text" name="phone" value="">
-                </div>
-
-                <div class="form-group">
-                    <label>District</label>
-                    <input type="text" name="district" value="">
-                </div>
-
-                <div class="form-group">
-                    <label>Province</label>
-                    <input type="text" name="province" value="">
-                </div>
-
-                <div class="form-group">
-                    <label>Country</label>
-                    <input type="text" name="country" value="Nepal">
-                </div>
-
-            </div>
-
-            <button type="submit" class="save-btn">Save Changes</button>
-
-        </form>
-
-    </div>
-
-</div>
 
 {% endblock %}
