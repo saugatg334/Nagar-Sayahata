@@ -134,3 +134,4 @@
 
 - No Django REST Framework or API endpoints are currently implemented.
 - Current functionality is focused on Django template rendering and frontend UI behavior.
+

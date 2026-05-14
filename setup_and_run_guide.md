@@ -108,3 +108,5 @@ python manage.py runserver
 - [ ] Database is created in MySQL
 - [ ] Migrations are done (makemigrations + migrate)
 - [ ] Server is running from myproject/ folder
+
+
