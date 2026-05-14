@@ -9,4 +9,6 @@ urlpatterns = [
     
     # HOME PAGE
     path('home/', views.Home.as_view(), name='home'),
+    # PROFILE PAGE
+    path('profile/', views.profile.as_view(), name='profile'),
 ]

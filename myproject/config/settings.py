@@ -83,11 +83,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nagar_sahayata_db',
         'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
+
 
 # ======================
 # PASSWORD VALIDATION
