@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipality Portal</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/core/style.css' %}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <h1>Municipality Portal</h1>
+            </div>
+            <nav class="navbar-menu">
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link">Home</a></li>
+                    <li><a href="#" class="nav-link">About</a></li>
+                    <li><a href="#" class="nav-link">Municipality Search</a></li>
+                    <li><a href="#" class="nav-link">Public Statistics</a></li>
+                    <li><a href="#" class="nav-link">Logout</a></li>
+                </ul>
+            </nav>
+            <div class="navbar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h2>Welcome to Municipality Portal</h2>
+            <p>This is the main content area. Add your content here.</p>
+        </div>
+    </main>
+
+    <script>
+        // Mobile menu toggle functionality
+        const navbarToggle = document.querySelector('.navbar-toggle');
+        const navbarMenu = document.querySelector('.navbar-menu');
+
+        navbarToggle.addEventListener('click', function() {
+            navbarMenu.classList.toggle('active');
+            navbarToggle.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navbarMenu.classList.remove('active');
+                navbarToggle.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

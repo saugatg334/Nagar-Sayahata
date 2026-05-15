@@ -1,112 +1,120 @@
-# Setup and Run Guide - Smart Municipal Grievance System
+# Setup and Run Guide
 
-## 1. Virtual Environment Setup (myenv)
+## Prerequisites
 
-### Create virtual environment
-```
-python -m venv myenv
-```
+- Python 3.8+
+- MariaDB/MySQL
+- Windows/Linux/Mac
 
-### Activate virtual environment
+## 1. Activate Virtual Environment
 
 **Windows PowerShell:**
-```
+```powershell
 myenv\Scripts\activate
 ```
 
 **Windows CMD:**
-```
+```cmd
 myenv\Scripts\activate.bat
 ```
 
 **Git Bash / Linux / Mac:**
-```
+```bash
 source myenv/bin/activate
 ```
 
-After activation, you will see `(myenv)` at the start of your command line. This means the virtual environment is active and ALL commands below must be run in this state.
-
----
+After activation, command prompt shows `(myenv)` prefix.
 
 ## 2. Install Requirements
 
-Run this command in the project root (where requirements.txt is located):
-```
+Run in project root (where `requirements.txt` is located):
+```bash
 pip install -r requirements.txt
 ```
 
----
+## 3. Database Setup
 
-## 3. Project Run Location Rule
+### Create Database
 
-Django commands MUST be run inside the `myproject/` folder (where manage.py is located).
-
-Example:
+Open MySQL client (phpMyAdmin, MySQL Workbench, or command line):
+```sql
+CREATE DATABASE nagar_sahayata_db;
 ```
+
+### Verify Settings
+
+Database settings in `myproject/config/settings.py`:
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'nagar_sahayata_db',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+```
+
+## 4. Run Migrations
+
+All Django commands must run from `myproject/` folder (where `manage.py` is located):
+
+```bash
 cd myproject
-```
-
----
-
-## 4. Database Setup (MariaDB/MySQL)
-
-### Configure in settings.py
-Open `myproject/config/settings.py` and locate the `DATABASES` section. Change these fields:
-- **NAME**: Your database name
-- **USER**: Your MySQL username
-- **PASSWORD**: Your MySQL password
-- **HOST**: localhost (or your server IP)
-- **PORT**: 3306 (default MySQL port)
-
-### Create database in MySQL
-Open your MySQL client (phpMyAdmin, MySQL Workbench, or command line) and run:
-```
-CREATE DATABASE your_database_name;
-```
-
-### Run migrations
-After DB setup, inside `myproject/` folder run:
-```
 python manage.py makemigrations
 python manage.py migrate
 ```
 
----
+## 5. Run Server
 
-## 5. Run Project
-
-1. Activate virtual environment (myenv)
-2. Go to myproject folder: `cd myproject`
-3. Run server:
-```
+```bash
 python manage.py runserver
 ```
 
----
+## 6. Access Application
 
-## 6. Browser Link
+| URL | Description |
+|-----|-------------|
+| http://127.0.0.1:8000/ | Home page (Frontend) |
+| http://127.0.0.1:8000/frontend/navbar/ | Frontend navbar page |
+| http://127.0.0.1:8000/admin/login/ | Admin login |
 
-- **Main URL**: http://127.0.0.1:8000/
-- **Admin Panel**: http://127.0.0.1:8000/admin/
-- **Login Page**: http://127.0.0.1:8000/login/
+## 7. Static Files
 
----
+Static files are served from two locations:
+- Backend static: `myproject/backend/static/`
+- Frontend static: `myproject/frontend/static/`
 
-## 7. Required Packages
+Both configured in `settings.py`:
+```python
+STATICFILES_DIRS = [
+    BASE_DIR / "backend" / "static",
+    BASE_DIR / "frontend" / "static",
+]
+```
 
-- Django
-- mysqlclient
-- Pillow
-- python-dotenv
+## 8. Templates
 
----
+Templates are loaded from:
+- `myproject/backend/templates/`
+- `myproject/frontend/templates/`
 
-## 8. Final Checklist
+Configured in `settings.py`:
+```python
+TEMPLATES = [{
+    'DIRS': [
+        BASE_DIR / "backend" / "templates",
+        BASE_DIR / "frontend" / "templates",
+    ],
+}]
+```
 
-- [ ] Virtual environment (myenv) is activated
-- [ ] requirements.txt is installed
-- [ ] Database is created in MySQL
-- [ ] Migrations are done (makemigrations + migrate)
-- [ ] Server is running from myproject/ folder
+## Quick Checklist
 
-
+- [ ] Virtual environment (myenv) activated
+- [ ] Requirements installed
+- [ ] Database created in MySQL
+- [ ] Migrations run (makemigrations + migrate)
+- [ ] Server running from myproject/ folder

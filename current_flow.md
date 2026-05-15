@@ -1,137 +1,111 @@
 # Current System Flow
 
-## 1. Current Authentication Flow
+## 1. URL Routing
 
-- Login page served by `backend.apps.authentication.views.LoginView`.
-- URL paths:
-  - `/login/` → `auth:login`
-  - `/logout/` → `auth:logout`
-- `LoginView.get()` renders `authentication/login.html`.
-- If a user is already authenticated, login GET redirects to `admin_panel:home`.
-- `LoginView.post()`:
-  - checks lockout state via cache
-  - validates username/password
-  - uses `authenticate()` and `login()` from Django auth
-  - on success, redirects to `/admin/home/` or `next` parameter if provided
-  - on failure, records attempts and adds delay
-- `LogoutView.get()` logs out the user and redirects to `/login/`.
+Main URL configuration in `config/urls.py`:
+- `/admin` → `backend.apps.admin_auth.urls`
+- `/admin/` → `backend.apps.admin_panel.urls`
+- `/frontend/` → `frontend.apps.core.urls`
+- `/` (root) → `frontend.apps.user_auth.urls`
 
-## 2. Current Admin Panel Features
+## 2. Active Frontend Flow
 
-- `admin_panel.html` is the main admin layout template.
-- Sidebar navigation for desktop with:
-  - Home
-  - About
-  - Skills
-  - Projects
-  - Timeline
-  - Contact
-- Sidebar behavior:
-  - desktop left sidebar remains
-  - collapsed sidebar mode for desktop with compact logo
-  - hover preview expands collapsed sidebar temporarily
-- Mobile behavior:
-  - bottom fixed navigation bar on screens <= 768px
-  - horizontal nav items and touch-friendly layout
-- Navbar features:
-  - sidebar toggle button
-  - theme toggle button
-  - profile dropdown with My Profile and Logout
-- Current JS logic in `backend/static/js/admin_panel/script.js` handles:
-  - sidebar collapsed/expanded state
-  - hover preview on desktop collapsed sidebar
-  - responsive mobile state changes
-  - theme toggle persistence
-  - dropdown toggle behavior
+### Home Page (Active Frontend)
+- URL: `/frontend/navbar/` or root `/`
+- View: `frontend.apps.core.views.Core`
+- Template: `frontend/templates/core/index.html`
+- CSS: `frontend/static/css/core/style.css`
 
-## 3. Current Routing System
+### Navbar Structure
+The home page navbar contains:
+- **Home** - Active by default
+- **About** - Information page
+- **Municipality Search** - Search functionality
+- **Public Statistics** - Public data display
+- **Logout** - User logout action
 
-- `config/urls.py` routes:
-  - root path `''` includes `backend.apps.authentication.urls`
-  - `/admin/` includes `backend.apps.admin_panel.urls`
-- `backend/apps/authentication/urls.py`:
-  - `login/`
-  - `logout/`
-- `backend/apps/admin_panel/urls.py`:
-  - `''` → `MainFunctionView` (admin landing page)
-  - `home/` → `Home` view
+### Navbar Features
+- Responsive navbar with flexbox layout
+- Brand logo on left ("Nagar Sahayata")
+- Menu items aligned right
+- Active state styling for current page
+- Hover effects on menu items
+- Dark theme navbar (#2c3e50 background)
 
-## 4. Current Static System
+## 3. Responsive Behavior
 
-- Static root folder: `myproject/backend/static`
-- Admin panel assets:
-  - `backend/static/css/admin_panel/style.css`
-  - `backend/static/js/admin_panel/script.js`
-- Home dashboard CSS:
-  - `backend/static/css/home/home.css`
-- Authentication login CSS:
-  - `backend/static/css/authentication/login.css`
-- Image/static handling uses Django `STATIC_URL` and `STATICFILES_DIRS`.
-- Current static settings in `myproject/config/settings.py`:
-  - `STATIC_URL = '/static/'`
-  - `STATICFILES_DIRS = [BASE_DIR / 'backend' / 'static']`
-  - `STATIC_ROOT = BASE_DIR / 'staticfiles'`
-- Media settings:
-  - `MEDIA_URL = '/media/'`
-  - `MEDIA_ROOT = BASE_DIR / 'backend' / 'media'`
+### Desktop (Default)
+- Navbar displays horizontally
+- Flex layout: justify-content: space-between
+- Menu items have 1.5rem gap
+- Padding: 0.5rem 1rem on links
 
-## 5. Current Template System
+### Mobile (CSS Media Query - implicit via flex wrap)
+- Navbar maintains horizontal layout
+- Content stacks on smaller screens
+- No dedicated mobile hamburger menu toggle yet (CSS-only responsive)
 
-- Base layout for admin pages: `backend/templates/admin_panel.html`
-- Dashboard page extends `admin_panel.html` using `{% extends 'admin_panel.html' %}`.
-- Login page is `backend/templates/authentication/login.html` and does not extend the admin base.
-- The admin panel uses template blocks:
-  - `title`
-  - `extra_css`
-  - `content`
-  - `extra_js`
+## 4. Static File Loading
 
-## 6. Current Responsive Features
+### Frontend Static Files
+- Located at: `myproject/frontend/static/`
+- CSS loaded via: `{% static 'css/core/style.css' %}`
+- Configured in settings.py:
+  ```python
+  STATICFILES_DIRS = [
+      BASE_DIR / "backend" / "static",
+      BASE_DIR / "frontend" / "static",
+  ]
+  ```
 
-- Desktop:
-  - left fixed sidebar at `var(--sidebar-width)`
-  - content area pushed right by sidebar width
-  - hover-expand behavior for collapsed sidebar
-- Mobile/tablet:
-  - sidebar converts to fixed bottom navigation
-  - horizontal nav layout with equally spaced items
-  - bottom nav padding prevents content overlap
-  - mobile toggle button is hidden because bottom nav replaces left sidebar
+### Template Loading
+- Frontend templates at: `myproject/frontend/templates/`
+- Configured in settings.py:
+  ```python
+  TEMPLATES = [{
+      'DIRS': [
+          BASE_DIR / "backend" / "templates",
+          BASE_DIR / "frontend" / "templates",
+      ],
+  }]
+  ```
 
-## 7. Current Database Setup
+## 5. Admin Panel Flow (Secondary)
 
-- Database engine configured in `myproject/config/settings.py`:
-  - `django.db.backends.mysql`
-- Current connection values:
-  - NAME: `nagar_sahayata_db`
-  - USER: `root`
-  - PASSWORD: `root`
-  - HOST: `localhost`
-  - PORT: `3306`
-- Migration system is Django migrations.
-- Current model status:
-  - `backend/apps/authentication/models.py` defines a simple `User` model.
-  - `backend/apps/admin_panel/models.py` is currently empty.
-  - The login flow uses Django auth functions, not a custom `AUTH_USER_MODEL` in settings.
+### Admin Login
+- URL: `/admin/login/`
+- View: `backend.apps.admin_auth.views.LoginView`
+- Template: `backend/templates/authentication/login.html`
 
-## 8. Current Security/System Logic
+### Admin Dashboard
+- URL: `/admin/home/`
+- View: `backend.apps.admin_panel.views.Home`
+- Template: `backend/templates/home/home.html`
+- Layout: `backend/templates/admin_panel.html`
 
-- Authentication checks use Django middleware and built-in auth functions.
-- Login protection includes cache-based brute force tracking:
-  - failed attempts recorded by IP address
-  - lockout after 5 failed attempts
-  - progressive delay on failures
-- CSRF is enabled via Django middleware and `{% csrf_token %}` in forms.
-- Logout clears session and redirects to login.
+## 6. Authentication Flow
 
-## 9. Current Existing Pages/Templates
+### User Authentication (Frontend)
+- Login page at root `/`
+- Managed by `frontend.apps.user_auth`
 
-- `authentication/login.html` — login/setup page
-- `admin_panel.html` — admin panel shell/layout
-- `home/home.html` — dashboard/home content page
+### Admin Authentication (Backend)
+- Login at `/admin/login/`
+- Logout at `/admin/logout/`
+- Managed by `backend.apps.admin_auth`
 
-## Notes
+## 7. Database Configuration
 
-- No Django REST Framework or API endpoints are currently implemented.
-- Current functionality is focused on Django template rendering and frontend UI behavior.
+- Engine: `django.db.backends.mysql`
+- Database: `nagar_sahayata_db`
+- User: `root`
+- Password: `root`
+- Host: `localhost`
+- Port: `3306`
 
+## 8. Notes
+
+- Active frontend is in `myproject/frontend/`
+- Root-level `frontend/` folder exists but is not used
+- CSS static loading fixed by adding frontend static to STATICFILES_DIRS
+- No mobile hamburger menu toggle yet (CSS-only responsive design)

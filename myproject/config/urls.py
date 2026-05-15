@@ -21,13 +21,21 @@ from django.conf import settings
 
 urlpatterns = [
     # ===== AUTHENTICATION ROUTES =====
-    path('', include('backend.apps.authentication.urls')),
+    path('admin', include('backend.apps.admin_auth.urls')),
     
     # ===== ADMIN PANEL ROUTES (Empty path = root) =====
     path('admin/', include('backend.apps.admin_panel.urls')),
+
+    # ===== FRONTEND ROUTES =====
+    path('frontend/', include('frontend.apps.core.urls')),
+    path('', include('frontend.apps.user_auth.urls')),
+
+
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 

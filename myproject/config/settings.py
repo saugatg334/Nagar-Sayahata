@@ -34,9 +34,13 @@ INSTALLED_APPS = [
 
     # your apps
     'backend.apps.admin_panel',
-    'backend.apps.authentication',
-    
-    
+    'backend.apps.admin_auth',
+
+    # frontend app
+    'frontend.apps.core',
+    'frontend.apps.user_auth',
+
+
 ]
 
 # ======================
@@ -60,7 +64,10 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "backend" / "templates"],  # global templates folder
+        'DIRS': [
+            BASE_DIR / "backend" / "templates",
+            BASE_DIR / "frontend" / "templates",
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -115,6 +122,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "backend" / "static",   # main static folder
+    BASE_DIR / "frontend" / "static",  # add frontend app static files
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"  # production use
