@@ -1,0 +1,613 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nagar Sahayata - User Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar" data-theme="auto">
+        <div class="sidebar-brand">
+            <i class="fa-solid fa-city"></i>
+            <h2>Nagar <span>Sahayata</span></h2>
+        </div>
+
+        <div class="theme-toggle-wrap">
+            <button id="themeToggle" type="button" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fa-solid fa-moon"></i>
+                <span>Theme</span>
+            </button>
+        </div>
+
+        <ul class="sidebar-menu" aria-label="Sidebar navigation">
+            <li><a href="#dashboard" class="active" aria-current="page"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li><a href="#complaints"><i class="fa-solid fa-file-pen"></i> Complaints</a></li>
+            <li><a href="#emergency"><i class="fa-solid fa-kit-medical"></i> Emergency</a></li>
+            <li><a href="#notifications"><i class="fa-solid fa-bell"></i> Notifications</a></li>
+            <li><a href="#services"><i class="fa-solid fa-server"></i> Services</a></li>
+            <li><a href="#profile"><i class="fa-solid fa-user"></i> Profile</a></li>
+            <li><a href="#settings"><i class="fa-solid fa-gear"></i> Settings</a></li>
+        </ul>
+
+        <div class="sidebar-divider"></div>
+
+        <ul class="sidebar-menu">
+            <li><a href="{% url 'user_auth:logout' %}" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1>Welcome Back!</h1>
+                <p>Manage your municipal services from here</p>
+            </div>
+            <div class="header-right">
+                <div class="header-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span id="currentDate">May 17, 2026</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Welcome Card -->
+        <div class="welcome-card">
+            <div class="welcome-text">
+                <h2>Hello, <span>Rajesh Kumar</span></h2>
+                <p>Your municipality services at your fingertips. File complaints, track progress, and access emergency services.</p>
+            </div>
+            <div class="welcome-time">
+                <div class="time" id="currentTime">10:30 AM</div>
+                <div class="date">Saturday</div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid" aria-label="Dashboard statistics">
+            <div class="stat-card" role="group" aria-label="Total Complaints">
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-file-pen"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>12</h3>
+                    <p>Total Complaints</p>
+                </div>
+            </div>
+            <div class="stat-card" role="group" aria-label="Pending Complaints">
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>5</h3>
+                    <p>Pending Complaints</p>
+                </div>
+            </div>
+            <div class="stat-card" role="group" aria-label="Resolved Complaints">
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>6</h3>
+                    <p>Resolved Complaints</p>
+                </div>
+            </div>
+            <div class="stat-card" role="group" aria-label="Emergency Requests">
+                <div class="stat-icon red">
+                    <i class="fa-solid fa-kit-medical"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>1</h3>
+                    <p>Emergency Requests</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <h3 class="section-title">Quick Actions</h3>
+        <div class="quick-actions">
+            <a href="#" class="action-btn">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span>File Complaint</span>
+            </a>
+            <a href="#" class="action-btn emergency">
+                <i class="fa-solid fa-kit-medical"></i>
+                <span>Emergency Help</span>
+            </a>
+            <a href="#" class="action-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Track Complaint</span>
+            </a>
+            <a href="#" class="action-btn">
+                <i class="fa-solid fa-phone"></i>
+                <span>Contact Municipality</span>
+            </a>
+            <a href="#" class="action-btn">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Nearby Services</span>
+            </a>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid" id="dashboard">
+        <!-- Complaints Section -->
+        <div class="complaints-section" id="complaints">
+            <h3 class="section-title">Complaint Status</h3>
+
+            <div class="complaints-cards" role="list" aria-label="Recent complaints status">
+                <article class="complaint-card" role="listitem">
+                    <div class="complaint-main">
+                        <div class="complaint-row">
+                            <span class="complaint-label">Complaint ID</span>
+                            <span class="complaint-id">#CMP-001</span>
+                        </div>
+                        <div class="complaint-row">
+                            <span class="complaint-label">Category</span>
+                            <span class="complaint-value">Road Damage</span>
+                        </div>
+                        <div class="complaint-row">
+                            <span class="complaint-label">Submitted Date</span>
+                            <span class="complaint-value">May 15, 2026</span>
+                        </div>
+                        <div class="complaint-row">
+                            <span class="complaint-label">Current Status</span>
+                            <span class="status-badge in-progress">In Progress</span>
+                        </div>
+                    </div>
+
+                    <div class="complaint-progress" aria-label="Progress indicator">
+                        <div class="progress-top">
+                            <span class="progress-text">Progress</span>
+                            <span class="progress-percent">60%</span>
+                        </div>
+                        <div class="progress-track" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" style="width: 60%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="complaint-actions">
+                        <button class="view-btn" type="button">View details</button>
+                    </div>
+                </article>
+
+                <article class="complaint-card" role="listitem">
+                    <div class="complaint-main">
+                        <div class="complaint-row">
+                            <span class="complaint-label">Complaint ID</span>
+                            <span class="complaint-id">#CMP-002</span>
+                        </div>
+                        <div class="complaint-row">
+                            <span class="complaint-label">Category</span>
+                            <span class="complaint-value">Street Light</span>
+                        </div>
+                        <div class="complaint-row">
+                            <span class="complaint-label">Submitted Date</span>
+                            <span class="complaint-value">May 12, 2026</span>
+                        </div>
+                        <div class="complaint-row">
+                            <span class="complaint-label">Current Status</span>
+                            <span class="status-badge pending">Pending</span>
+                        </div>
+                    </div>
+
+                    <div class="complaint-progress" aria-label="Progress indicator">
+                        <div class="progress-top">
+                            <span class="progress-text">Progress</span>
+                            <span class="progress-percent">25%</span>
+                        </div>
+                        <div class="progress-track" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" style="width: 25%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="complaint-actions">
+                        <button class="view-btn" type="button">View details</button>
+                    </div>
+                </article>
+
+                <article class="complaint-card" role="listitem">
+                    <div class="complaint-main">
+                        <div class="complaint-row">
+                            <span class="complaint-label">Complaint ID</span>
+                            <span class="complaint-id">#CMP-003</span>
+                        </div>
+                        <div class="complaint-row">
+                            <span class="complaint-label">Category</span>
+                            <span class="complaint-value">Water Leakage</span>
+                        </div>
+                        <div class="complaint-row">
+                            <span class="complaint-label">Submitted Date</span>
+                            <span class="complaint-value">May 10, 2026</span>
+                        </div>
+                        <div class="complaint-row">
+                            <span class="complaint-label">Current Status</span>
+                            <span class="status-badge resolved">Resolved</span>
+                        </div>
+                    </div>
+
+                    <div class="complaint-progress" aria-label="Progress indicator">
+                        <div class="progress-top">
+                            <span class="progress-text">Progress</span>
+                            <span class="progress-percent">100%</span>
+                        </div>
+                        <div class="progress-track" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" style="width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="complaint-actions">
+                        <button class="view-btn" type="button">View details</button>
+                    </div>
+                </article>
+
+                <article class="complaint-card" role="listitem">
+                    <div class="complaint-main">
+                        <div class="complaint-row">
+                            <span class="complaint-label">Complaint ID</span>
+                            <span class="complaint-id">#CMP-004</span>
+                        </div>
+                        <div class="complaint-row">
+                            <span class="complaint-label">Category</span>
+                            <span class="complaint-value">Waste Management</span>
+                        </div>
+                        <div class="complaint-row">
+                            <span class="complaint-label">Submitted Date</span>
+                            <span class="complaint-value">May 08, 2026</span>
+                        </div>
+                        <div class="complaint-row">
+                            <span class="complaint-label">Current Status</span>
+                            <span class="status-badge resolved">Resolved</span>
+                        </div>
+                    </div>
+
+                    <div class="complaint-progress" aria-label="Progress indicator">
+                        <div class="progress-top">
+                            <span class="progress-text">Progress</span>
+                            <span class="progress-percent">100%</span>
+                        </div>
+                        <div class="progress-track" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" style="width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="complaint-actions">
+                        <button class="view-btn" type="button">View details</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+            <!-- Emergency Services -->
+            <div class="emergency-section" id="emergency">
+                <h3 class="section-title">Emergency Services</h3>
+                <div class="emergency-grid">
+                    <div class="emergency-card ambulance">
+                        <i class="fa-solid fa-ambulance"></i>
+                        <span>Ambulance</span>
+                    </div>
+                    <div class="emergency-card police">
+                        <i class="fa-solid fa-user-police"></i>
+                        <span>Police</span>
+                    </div>
+                    <div class="emergency-card fire">
+                        <i class="fa-solid fa-fire"></i>
+                        <span>Fire Brigade</span>
+                    </div>
+                    <div class="emergency-card electricity">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Electricity</span>
+                    </div>
+                    <div class="emergency-card water">
+                        <i class="fa-solid fa-water"></i>
+                        <span>Water</span>
+                    </div>
+                    <div class="emergency-card municipality">
+                        <i class="fa-solid fa-building"></i>
+                        <span>Municipality</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="notifications-section" id="notifications">
+            <h3 class="section-title">Notifications & Announcements</h3>
+
+            <div class="notifications-grid">
+                <section class="notification-panel" aria-label="Recent updates from municipality">
+                    <h4 class="panel-title">Municipality Updates</h4>
+                    <div class="notification-list">
+                        <div class="notification-item">
+                            <div class="notification-icon alert">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Water Supply Interruption</h4>
+                                <p>Ward 5 will have water supply interruption tomorrow from 6 AM to 12 PM.</p>
+                            </div>
+                            <div class="notification-time">2 hours ago</div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-icon update">
+                                <i class="fa-solid fa-file-pen"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Municipality Service Window</h4>
+                                <p>Public service counters will remain open until 6 PM today.</p>
+                            </div>
+                            <div class="notification-time">Yesterday</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="notification-panel" aria-label="Complaint updates">
+                    <h4 class="panel-title">Your Complaint Updates</h4>
+                    <div class="notification-list">
+                        <div class="notification-item">
+                            <div class="notification-icon update">
+                                <i class="fa-solid fa-file-pen"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Complaint #CMP-001 Updated</h4>
+                                <p>Your complaint has been assigned to the concerned department.</p>
+                            </div>
+                            <div class="notification-time">5 hours ago</div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-icon success">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Complaint #CMP-003 Resolved</h4>
+                                <p>Resolved. Thank you for your patience.</p>
+                            </div>
+                            <div class="notification-time">1 day ago</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="notification-panel" aria-label="Emergency alerts">
+                    <h4 class="panel-title">Emergency Alerts</h4>
+                    <div class="notification-list">
+                        <div class="notification-item">
+                            <div class="notification-icon alert">
+                                <i class="fa-solid fa-bell"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Road Closure Notice</h4>
+                                <p>Temporary road closure near main junction due to maintenance work.</p>
+                            </div>
+                            <div class="notification-time">3 hours ago</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="notification-panel" aria-label="Announcement cards">
+                    <h4 class="panel-title">Announcements</h4>
+                    <div class="announcement-cards" aria-label="Announcement cards">
+                        <div class="announcement-card">
+                            <div class="announcement-icon info">
+                                <i class="fa-solid fa-bullhorn"></i>
+                            </div>
+                            <div class="announcement-content">
+                                <h4>Community Cleanliness Drive</h4>
+                                <p>Join the ward cleanliness campaign this weekend.</p>
+                            </div>
+                        </div>
+                        <div class="announcement-card">
+                            <div class="announcement-icon update">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
+                            <div class="announcement-content">
+                                <h4>Online Complaint Support</h4>
+                                <p>New helpline added for complaint guidance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Nearby Services -->
+        <div class="nearby-section" id="services">
+            <h3 class="section-title">Nearby Municipal Services</h3>
+            <div class="nearby-grid">
+                <div class="nearby-card hospital">
+                    <i class="fa-solid fa-hospital"></i>
+                    <span>Hospitals</span>
+                </div>
+                <div class="nearby-card police">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <span>Police stations</span>
+                </div>
+                <div class="nearby-card ward">
+                    <i class="fa-solid fa-office"></i>
+                    <span>Ward office</span>
+                </div>
+                <div class="nearby-card water">
+                    <i class="fa-solid fa-faucet-drip"></i>
+                    <span>Drinking water office</span>
+                </div>
+                <div class="nearby-card waste">
+                    <i class="fa-solid fa-trash"></i>
+                    <span>Waste management office</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile & Activities Grid -->
+        <div class="dashboard-grid" id="profile" style="margin-top: 25px;">
+            <!-- Settings anchor (frontend-only) -->
+            <div id="settings" style="display:none;"></div>
+            <!-- User Profile -->
+            <div class="profile-section">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h3>Rajesh Kumar</h3>
+                            <p>Ward No. 5, Municipality Area</p>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="profile-detail">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>+977 9876543210</span>
+                        </div>
+                        <div class="profile-detail">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>rajesh@example.com</span>
+                        </div>
+                        <div class="profile-detail">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Ward 5, Baneshwor</span>
+                        </div>
+                        <div class="profile-detail">
+                            <i class="fa-solid fa-calendar"></i>
+                            <span>Member since 2024</span>
+                        </div>
+                    </div>
+                    <button class="edit-profile-btn">Edit Profile</button>
+                </div>
+            </div>
+
+            <!-- Recent Activities -->
+            <div class="activities-section">
+                <div class="activity-timeline">
+                    <h3 class="section-title">Recent Activities</h3>
+                    <div class="timeline-list">
+                        <div class="timeline-item">
+                            <div class="timeline-icon submit">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Complaint Submitted</h4>
+                                <p>Road damage complaint filed - #CMP-001</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon resolve">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Complaint Resolved</h4>
+                                <p>Water leakage issue fixed - #CMP-003</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon emergency">
+                                <i class="fa-solid fa-kit-medical"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Emergency Request</h4>
+                                <p>Ambulance requested for medical emergency</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon response">
+                                <i class="fa-solid fa-reply"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Municipality Response</h4>
+                                <p>Received update on waste collection schedule</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Toggle sidebar on mobile
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Theme toggle (light/dark subtle support)
+        (function themeInit() {
+            const root = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            if (!themeToggle) return;
+
+            const saved = localStorage.getItem('ns_theme');
+            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const initialTheme = saved || (systemPrefersDark ? 'dark' : 'light');
+
+            root.setAttribute('data-theme', initialTheme);
+
+            function syncIcon() {
+                const icon = themeToggle.querySelector('i');
+                if (!icon) return;
+                const t = root.getAttribute('data-theme');
+                icon.classList.remove('fa-sun', 'fa-moon');
+                icon.classList.add(t === 'dark' ? 'fa-moon' : 'fa-sun');
+            }
+
+            syncIcon();
+
+            themeToggle.addEventListener('click', () => {
+                const current = root.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                root.setAttribute('data-theme', next);
+                localStorage.setItem('ns_theme', next);
+                syncIcon();
+            });
+        })();
+
+        // Update current date and time
+        function updateDateTime() {
+            const now = new Date();
+
+
+            // Date
+            const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', dateOptions);
+
+            // Time
+            const timeOptions = { hour: '2-digit', minute: '2-digit' };
+            document.getElementById('currentTime').textContent = now.toLocaleTimeString('en-US', timeOptions);
+        }
+
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-toggle');
+
+            if (window.innerWidth <= 992) {
+                if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+                    sidebar.classList.remove('active');
+                }
+            }
+        });
+
+        // Close sidebar after selecting a nav item on mobile
+        const sidebarLinks = document.querySelectorAll('#sidebar .sidebar-menu a');
+        sidebarLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    const sidebar = document.getElementById('sidebar');
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

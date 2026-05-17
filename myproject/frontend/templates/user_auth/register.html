@@ -1,0 +1,225 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nagar Sahayata - Register</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/auth/register.css' %}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Background Effects -->
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+
+    <!-- Register Container -->
+    <div class="register-container">
+
+        <!-- Logo -->
+        <div class="logo">
+            <i class="fa-solid fa-city"></i>
+        </div>
+<h1 class="main-heading">
+    Welcome To <span>Nagar Sahayata</span>
+</h1>
+
+<p class="subtitle">
+    Create your account and access municipality services
+</p>
+        <!-- Form -->
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <!-- Full Name -->
+            <div class="input-group">
+
+                <label>Full Name</label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input type="text"
+                           name="fullname"
+                           placeholder="Enter your full name"
+                           required>
+
+                </div>
+
+            </div>
+
+            <!-- Email -->
+            <div class="input-group">
+
+                <label>Email Address</label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input type="email"
+                           name="email"
+                           placeholder="Enter your email"
+                           required>
+
+                </div>
+
+            </div>
+
+            <!-- Username -->
+            <div class="input-group">
+
+                <label>Username</label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-at"></i>
+
+                    <input type="text"
+                           name="username"
+                           placeholder="Choose username"
+                           required>
+
+                </div>
+
+            </div>
+
+            <!-- Password -->
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-lock lock-icon"></i>
+
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           placeholder="Create password"
+                           required>
+
+                    <!-- Eye Toggle -->
+                    <span class="toggle-password"
+                          onclick="togglePassword('password', 'eyeIcon1')">
+
+                        <i class="fa-solid fa-eye-slash"
+                           id="eyeIcon1"></i>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="input-group">
+
+                <label>Confirm Password</label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-lock lock-icon"></i>
+
+                    <input type="password"
+                           id="confirmPassword"
+                           name="confirm_password"
+                           placeholder="Confirm password"
+                           required>
+
+                    <!-- Eye Toggle -->
+                    <span class="toggle-password"
+                          onclick="togglePassword('confirmPassword', 'eyeIcon2')">
+
+                        <i class="fa-solid fa-eye-slash"
+                           id="eyeIcon2"></i>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- Terms -->
+            <div class="terms">
+
+                <label>
+
+                    <input type="checkbox" required>
+
+                    I agree to the Terms & Conditions
+
+                </label>
+
+            </div>
+
+            <!-- Register Button -->
+            <button type="submit" class="register-btn">
+                Create Account
+            </button>
+
+        </form>
+
+        <!-- Bottom -->
+        <div class="bottom-text">
+
+            Already have an account?
+
+            <a href="{% url 'user_auth:login' %}">Login</a>
+
+        </div>
+
+    </div>
+
+    <!-- Password Toggle Script -->
+    <script>
+
+        function togglePassword(inputId, iconId){
+
+            const passwordInput = document.getElementById(inputId);
+            const eyeIcon = document.getElementById(iconId);
+
+            // SHOW PASSWORD
+            if(passwordInput.type === "password"){
+
+                passwordInput.type = "text";
+
+                // Open Eye
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+
+            }
+
+            // HIDE PASSWORD
+            else{
+
+                passwordInput.type = "password";
+
+                // Closed Eye
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

@@ -96,3 +96,39 @@
   - Remove or consolidate the duplicate root-level `frontend/` directory to avoid confusion.
   - Address the duplicate `admin_panel` URL namespace warning.
   - Continue frontend development for sidebar, dropdowns, authentication layout, and additional UI flows.
+
+## 14. User Dashboard UI Modernization
+
+- Modified `myproject/frontend/templates/user_auth/dashboard.html`
+  - Refreshed dashboard layout to match required sections (Complaint Status with progress indicator, Notifications + Announcements panel, Nearby services labels).
+  - Added responsive theme toggle (light/dark) with localStorage support (frontend-only).
+  - Improved sidebar navigation items/anchors and mobile sidebar close behavior.
+  - Why: deliver a modern, responsive, government-service friendly user dashboard without touching backend.
+
+- Modified `myproject/frontend/static/css/dashboard/style.css`
+  - Added styling for complaint status cards + progress indicators.
+  - Added styling for notifications grid and announcement cards.
+  - Added theme variables support for subtle dark/light support.
+  - Why: ensure new dashboard UI looks polished and works well on mobile.
+
+- Note: All changes are frontend-only (templates/static CSS); no backend logic/APIs/Django settings were modified for this dashboard update.
+
+## 13. Register Page CSS Fixes
+
+- Modified `myproject/frontend/static/css/auth/register.css`
+  - Added an additional breakpoint rule to re-enable vertical scrolling on very small screens (max-width: 420px).
+  - Why: fix “register page not working” issue caused by `overflow:hidden` on the page body preventing the form from being usable on small/mobile viewports.
+
+## 15. Register Page CSS Fix Continuation
+
+
+- Further optimized `myproject/frontend/static/css/auth/register.css` to fit full form in viewport.
+
+- Reduced container max-width from 420px to 380px.
+- Reduced all padding and margins significantly for compact fit.
+- Input height reduced to fit multiple fields on screen.
+- Desktop: No scroll, full form visible.
+- Mobile (<420px): Scroll allowed only on very small screens for usability.
+- Maintained colors and gradient (already good).
+- Added responsive breakpoints: 420px (tablet), 340px (small mobile).
+- Background circles reduced in size for better fit.
