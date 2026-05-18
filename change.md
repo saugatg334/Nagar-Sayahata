@@ -116,7 +116,7 @@
 ## 13. Register Page CSS Fixes
 
 - Modified `myproject/frontend/static/css/auth/register.css`
-  - Added an additional breakpoint rule to re-enable vertical scrolling on very small screens (max-width: 420px).
+  - Added an additional breakpoint rule to re-enable vertical scrolling(here need horizental scroolling) on very small screens (max-width: 420px).
   - Why: fix “register page not working” issue caused by `overflow:hidden` on the page body preventing the form from being usable on small/mobile viewports.
 
 ## 15. Register Page CSS Fix Continuation
