@@ -164,3 +164,4 @@ class Register(View):
 
 def dashboard(request):
     return HttpResponse("Dashboard Working Successfully")
+

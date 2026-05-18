@@ -11,7 +11,30 @@ from django.contrib import messages
 # ====================================
 class Core(View):
     def get(self, request):
-        return render(request, 'core/index.html')
+        return render(request, 'user_auth/dashboard.html')
 
 
+#  ====================================
+# ✅ Main user (Landing Page)
+# ====================================
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+
+def login_view(request):
+
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(
+            request,
+            username=username,
+            password=password
+        )
+
+        if user is not None:
+            login(request, user)
+            return redirect("dashboard")
+
+    return render(request, "login.html")
 
